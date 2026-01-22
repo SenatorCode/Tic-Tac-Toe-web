@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Rounded">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+        <header>
+            <a href="#" class="logo">Tic<span>Tac</span>Toe</a>
+            <div class="header-buttons">
+                <button class="icon-btn material-icons" id="helpBtn" title="How to Play">help_outline</button>
+            </div>
+        </header>
+    
+        <!-- Intro Section -->
+        <section class="section active intro-section" id="introSection">
+            <h1>Ready For A <span class="highlight">Tournament?</span></h1>
+            <p>Challenge your friend to a classic game of Tic Tac Toe. Strategy, skill, and a little bit of luck.</p>
+            <button class="btn btn-primary" id="startBtn"> <span class="material-icons">play_arrow</span> Start Game</button>
+            <div class="intro-grid">
+                <div class="player-card">
+                    <div class="symbol x">✕</div>
+                    <div class="player-label">Player 1</div>
+                </div>
+                <div class="player-card">
+                    <div class="symbol o">○</div>
+                    <div class="player-label">Player 2</div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Setup Section -->
+        <section class="section setup-section" id="setupSection">
+            <h2>Ready For A Tournament?</h2>
+            <p>Customize your names and enter the arena.</p>
+            <div class="player-inputs">
+                <div class="player-input-card">
+                    <div class="symbol x">✕</div>
+                    <label for="player1Name">Player 1 (X)</label>
+                    <input type="text" id="player1Name" placeholder="Player One" value="Player One">
+                </div>
+                <div class="player-input-card">
+                    <div class="symbol o">○</div>
+                    <label for="player2Name">Player 2 (O)</label>
+                    <input type="text" id="player2Name" placeholder="Player Two" value="Player Two">
+                </div>
+            </div>
+            <button class="btn btn-primary" id="beginBtn">Begin Match</button>
+            <button class="btn btn-secondary btn-small" id="backToIntroBtn"><span class="material-icons">arrow_back</span> Back to Menu</button>
+        </section>
+    
+        <!-- Game Section -->
+        <section class="section game-section" id="gameSection">
+            <div class="round-info" id="roundInfo">Round 1 of 5</div>
+            <div class="game-header">
+                <h2 id="gameTitle">Match in Progress</h2>
+                <p>The battle for the grid continues.</p>
+            </div>
+            
+            <div class="players-status">
+                <div class="player-status active" id="player1Status">
+                    <div class="player-status-symbol">✕</div>
+                    <div class="player-status-name" id="player1StatusName">Player One</div>
+                </div>
+                <div class="player-status" id="player2Status">
+                    <div class="player-status-symbol">O</div>
+                    <div class="player-status-name" id="player2StatusName">Player Two</div>
+                </div>
+            </div>
+
+            <div class="game-info">
+                <p id="turnInfo"><span class="material-icons-outlined">loop</span> Current Turn: Player One (X)</p>
+            </div>
+
+            <div class="board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+
+            <p style="color: var(--text-light); font-weight: 500;">Keep playing to win!</p>
+
+            <div class="button-group">
+                <button class="btn btn-primary btn-small" id="restartBtn"><span class="material-icons-outlined">loop</span> Restart Game</button>
+                <button class="btn btn-secondary btn-small material-icons" id="editNamesBtn"><span class="material-icons-outlined">edit</span> Edit Names</button>
+            </div>
+        </section>
+
+    
+        <!-- Results Section -->
+        <section class="section results-section" id="resultsSection">
+            <div id="resultContainer"></div>
+            <div class="button-group vertical">
+                <button class="btn btn-primary" id="playAgainBtn"><span class="material-icons-outlined">loop</span> Play Again</button>
+                <button class="btn btn-secondary" id="changePlayersBtn">👥 Change Players</button>
+            </div>
+        </section>
+    
+        <!-- Help Modal -->
+        <div class="modal" id="helpModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>How to Play</h3>
+                    <button class="close-btn" id="closeHelpBtn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4>Game Rules:</h4>
+                    <ul>
+                        <li>Two players take turns marking spaces on a 3×3 grid</li>
+                        <li>Player 1 is X, Player 2 is O</li>
+                        <li>The first player to get three marks in a row (horizontally, vertically, or diagonally) wins</li>
+                        <li>If all 9 squares are filled with no winner, the game is a draw</li>
+                    </ul>
+    
+                    <h4>Tournament:</h4>
+                    <ul>
+                        <li>The tournament consists of 5 matches</li>
+                        <li>Players alternate starting each match</li>
+                        <li>Scores are tracked throughout the tournament</li>
+                        <li>The player with the most wins after 5 matches wins the tournament</li>
+                    </ul>
+    
+                    <h4>Controls:</h4>
+                    <ul>
+                        <li>Click any empty square to place your mark</li>
+                        <li>Use "Restart Game" to replay the current match</li>
+                        <li>Use "Edit Names" to change player names</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" id="closeHelpBtnBottom">Okay</button>
+            </div>
+        </div>
+    
+        <!-- Tournament Results Modal -->
+        <div class="modal" id="tournamentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Tournament Results</h3>
+                    <button class="close-btn" id="closeTournamentBtn">&times;</button>
+                </div>
+                <div class="modal-body" id="tournamentResults"></div>
+                <div class="button-group vertical">
+                    <button class="btn btn-primary" id="playAgainTournamentBtn">↻ Let's Play Again!</button>
+                    <button class="btn btn-secondary" id="endGameBtn">End Game</button>
+                </div>
+            </div>
+        </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>A modern Tic Tac Toe tournament game built with vanilla HTML, CSS, and JavaScript. Challenge your friends and track your scores!</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="https://github.com/SenatorCode/Tic-Tac-Toe-web" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                    <li><a href="https://github.com/SenatorCode" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Made By</h4>
+                <p><a href="https://github.com/SenatorCode" target="_blank" rel="noopener noreferrer" class="creator-link">Senator's Code</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Tic Tac Toe Tournament. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+<script src="./script.js" defer></script>
+</html>
