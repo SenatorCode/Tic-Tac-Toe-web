@@ -297,7 +297,7 @@ const DisplayController = (() => {
                 </h3>
                 <div class="tournament-results">
                     <div class="result-item ${scores.player1 > scores.player2 ? 'winner' : ''}">
-                        <p><span class="label">${player1.name} (X):</span> <span class="value">${scores.player1}</span> Wins</p>
+                        <p><span class="label">${player1.name} (X):</span> <span class="value"zzz>${scores.player1}</span> Wins</p>
                     </div>
                     <div class="result-item">
                         <p><span class="label">Draws:</span> <span class="value">${scores.draws}</span></p>
@@ -436,12 +436,8 @@ const DisplayController = (() => {
         });
     };
 
-    return {
-        addEventListeners,
-        renderBoard,
-        updateDisplay
-    };
+    return addEventListeners;
 })();
 
 // ===== INITIALIZE GAME =====
-DisplayController.addEventListeners();
+DisplayController();
